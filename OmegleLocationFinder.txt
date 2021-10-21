@@ -25,19 +25,19 @@ function fetchLocation(ip) {
         .then(res => res.json())
         .then(response => {
 
-            console.log("Country :" + response.country)
-            console.log("State : " + response.region)
-            console.log("City : " + response.city)
-            console.log("Pin Code : " + response.postal)
-            console.log("Org : " + response.org)
+            for (const [key, val] of Object.entries(response)) {
+                console.log("key : " + key);
+                console.log("val : " + val);
+                console.log("...");
+            }
 
-            writeMessage(response.country, response.region, response.city, response.postal)
+            writeMessage(response.city, response.postal, response.region, response.country)
         })
         .catch(error => console.error('Error:', error));
 }
 
 
-function writeMessage(country, region, city, postal) {
+function writeMessage(city, postal, region, country) {
     let chatmsg = document.getElementsByClassName("chatmsg");
     let sendbtn = document.getElementsByClassName("sendbtn");
 
